@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-br" ng-app="meuApp">
+
+        <head>
+          <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+          <title>LojaDesenvolvedoresApp by Fabio Oliveira</title>
+          <meta name="description" content="">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+          <link rel="stylesheet" href="style/main.css">
+          <link href="lib/bootstrap/font-awesome.min.css" rel="stylesheet">
+          <script src="lib/jquery/jquery.min.js"></script>
+          <script>window.jQuery || document.write('<script src="lib/jquery/jquery-1.11.2.min.js"><\/script>')</script>
+          <script src="lib/bootstrap/bootstrap.js"></script>
+          <script src="lib/angular/angular.js"></script>
+          <script src="controllers/meuControlador.js"></script>
+        </head>
+    <body>
+      <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+       <div style="float: left; color: white ">
+        <h1><b>LojaDesenvolvedoresApp</b></h1>
+        <p class="lead">Simples aplicação utilizando MongoDB, Express, AngularJS e NodeJS.</p>
+      </div>
+      </div>
+    </nav>
+
+    <div class="container" ng-controller="meuControlador">
+      <div class="row">
+        <h2>Adicionando um desenvolvedor</h2>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+              <input type="text" placeholder="Usuário do Github" class="form-control" ng-model="desenvolvedor.login">
+          </div>
+          <button type="submit" class="btn btn-warning" ng-click="pesquisarDesenvolvedor()"><i class="glyphicon glyphicon-search"></i> Pesquisar</button>
+          <button class="btn btn-success" ng-click="adicionarDesenvolvedor(desenvolvedor)" ng-disabled="isRetornoTrue != true"><i class="glyphicon glyphicon-plus"></i> Adicionar Contato</button>
+        </form>
+      </div>
+
+
+<div class="container">
+<table id="cart" class="table table-hover table-condensed" ng-show="listaDesenvolvedores.length">
+      <thead>
+      <tr>
+        <th style="width:50%">Carrinho de Compras</th>
+        <th style="width:10%">Preço</th>
+        <th style="width:8%">Horas</th>
+        <th style="width:22%" class="text-center">Subtotal</th>
+        <th style="width:10%">Selecionar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="desenvolvedor in listaDesenvolvedores" ng-class="{'selecionado negrito': desenvolvedor.selecionado}">
+        <td data-th="Desenvolvedor">
+          <div class="row">
+            <div class="col-sm-2 hidden-xs"><img src="{{desenvolvedor.avatar_url}}" alt="..." class="img-responsive"/></div>
+            <div class="col-sm-10">
+              <h4 class="nomargin"><strong>{{desenvolvedor.login}}</strong></h4>
+              <p>O usuário <strong>{{desenvolvedor.login}}</strong> possui <strong>{{desenvolvedor.followers}}</strong> seguidor(es) e tem <strong>{{desenvolvedor.public_repos}}</strong> respositório(s).</p>
+            </div>
+          </div>
+        </td>
+        <td data-th="Preco">R$ {{desenvolvedor.preco}}</td>
+        <td data-th="Horas">
+          <input type="number" ng-model="desenvolvedor.hora" class="form-control text-center" value="1" min="1" ng-change="atualizarSubTotal(desenvolvedor)">
+        </td>
+        <td data-th="Subtotal" class="text-center">R$ {{desenvolvedor.precoFinal}}</td>
+		<td><input type="checkbox" ng-model="desenvolvedor.selecionado"/></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+<td>
+<input type="text" placeholder="Cupom de Desconto" class="form-control" ng-model="cupom" style="width: 35%"><button type="submit" class="btn btn-primary" ng-click="validarCupom()"><i class="glyphicon glyphicon-ok"></i> Validar Cupom</button>
+<button class="btn btn-danger" ng-click="removerDesenvolvedor(listaDesenvolvedores)" ng-if="isDesenvolvedorSelecionado(listaDesenvolvedores)"><i class="glyphicon glyphicon-remove"></i> Remover do carrinho</button>
+</td>
+        <td colspan="2" class="hidden-xs"></td>
+        <td class="hidden-xs text-center"><strong>Total R$ {{totalCarrinho}}</strong></td>
+        <td><button class="btn btn-danger" ng-click="finalizarPedido()" ng-show="listaDesenvolvedores.length"><i class="glyphicon glyphicon-saved"></i> Finalizar Pedido</button></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+        <div class="totalizer row" ng-show="listaDesenvolvedores.length">
+          <div class="col-sm-5">
+            <div class="row">
+              <table class="table">
+                <tbody>
+                  <tr class="total">
+                    <td>Total de Desenvolvedores: {{listaDesenvolvedores.length}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      <div class="historic" ng-show="historicoPedidos.length">
+        <h2>Histórico de pedidos</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Código do Pedido</th>
+              <th>Preço Total</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="historico in historicoPedidos">
+          <td>{{historico._id}}</td>
+          <td>R$ {{historico.precoTotal}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div id="footer">
+     <div class="container">
+       <p class="muted credit">Desenvolvidor por Fabio Oliveira - fabio91oliveira@gmail.com</p>
+     </div>
+   </div>
+  </body>
+</html>

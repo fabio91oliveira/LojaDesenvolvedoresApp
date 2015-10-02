@@ -1,0 +1,26 @@
+{
+  "name": "lojadesenvolvedores",
+  "version": "1.0.0",
+  "description": "Simples aplicacao que utiliza a API do GITHUB para integracao de dados",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "",
+    "express": "",
+    "mongojs": ""
+  },
+  "scripts": {
+    "test": "echo \"Erro: Nenhum teste especificado\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabio91oliveira/LojaDesenvolvedoresApp"
+  },
+  "author": "Fabio Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabio91oliveira"
+  },
+  "homepage": "http://www.devdata.com.br",
+  "email": "fabio91oliveira@gmail.com"
+}

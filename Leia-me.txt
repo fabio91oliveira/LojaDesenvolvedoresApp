@@ -1,0 +1,13 @@
+Neste projeto, utilizei as seguintes tecnologias: MONGODB, EXPRESS, ANGULAR e NODE ( MEAN ).
+
+Estou aprendendo bastante sobre essas tecnologias e escolhi utilizadas pois já estava estudando e achei mais prática e fácil para mim obter resultado mais rápido com elas.
+
+
+Basicamente a aplicação busca o usuário através da api do github, adiciona ao carrinho e depois de ter a lista completa, é finalizado e inserido um histórico de pedidos no banco.
+
+
+
+Aprendi muito e espero superar as expectativas em minha depositada. De qualquer forma, obrigado pela oportunidade!
+
+
+Repositório: https://github.com/fabio91oliveira/LojaDesenvolvedoresApp
