@@ -147,6 +147,7 @@ $scope.finalizarPedido = function() {
     console.log("LOG: Pedido Finalizado.");
     limparLista();
     recarregar();
+    alert('Pedido Finalizado!');
   }).error(function () {
     console.log("LOG: Error ao tentar gravar no banco!");
     alert("Erro ao gravar no banco! Verifique a conexão com o mesmo!");
